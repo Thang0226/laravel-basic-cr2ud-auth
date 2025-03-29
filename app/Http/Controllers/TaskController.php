@@ -35,4 +35,17 @@ class TaskController extends Controller
         $task = Task::create($request->all());
         return redirect()->route('tasks.index')->with('message','Create task successfully');
     }
+
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+        return redirect()->route('tasks.index')->with('message','Update task successfully');
+    }
 }

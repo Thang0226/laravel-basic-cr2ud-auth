@@ -14,6 +14,7 @@
                         <th>No.</th>
                         <th>Name</th>
                         <th>Content</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,16 @@
                         <td>{{ ($tasks->currentPage() - 1) * $tasks->perPage() + $index + 1 }}</td>
                         <td>{{ $task->name }}</td>
                         <td>{{ $task->content }}</td>
+                        <td>
+                            <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Update</a>
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="DELETE" class="d-inline delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger btn-sm delete-button" data-id="{{ $task->id }}">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -29,4 +40,16 @@
             {{ $tasks->links() }}
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.delete-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this task?')) {
+                    this.closest('form').submit();
+                }
+            });
+        });
+    });
+    </script>
 @endsection

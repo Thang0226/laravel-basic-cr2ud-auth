@@ -33,3 +33,15 @@ Route::get('/tasks/create', [TaskController::class,'create'])
 Route::post('/tasks', [TaskController::class,'store'])
     ->name('tasks.store')
     ->middleware('auth');
+
+Route::put('/tasks/{id}', [TaskController::class,'update'])
+    ->name('tasks.update')
+    ->middleware('auth');
+
+Route::get('/tasks/{id}/edit', [TaskController::class,'edit'])
+    ->name('tasks.edit')
+    ->middleware('auth');
+
+Route::delete('/tasks', [TaskController::class,'destroy'])
+    ->name('tasks.destroy')
+    ->middleware('auth');
