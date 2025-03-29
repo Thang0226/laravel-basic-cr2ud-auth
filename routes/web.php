@@ -45,3 +45,6 @@ Route::get('/tasks/{id}/edit', [TaskController::class,'edit'])
 Route::delete('/tasks/{id}', [TaskController::class,'destroy'])
     ->name('tasks.destroy')
     ->middleware('auth');
+
+Route::get('/tasks/{id}', [TaskController::class,'show'])
+    ->name('tasks.show');

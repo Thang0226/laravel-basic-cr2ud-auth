@@ -13,7 +13,6 @@
                     <tr>
                         <th>No.</th>
                         <th>Name</th>
-                        <th>Content</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -21,8 +20,7 @@
                     @foreach ($tasks as $index => $task )
                     <tr>
                         <td>{{ ($tasks->currentPage() - 1) * $tasks->perPage() + $index + 1 }}</td>
-                        <td>{{ $task->name }}</td>
-                        <td>{{ $task->content }}</td>
+                        <td><a href="{{ route('tasks.show', $task->id) }}">{{ $task->name }}</a></td>
                         <td>
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Update</a>
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline delete-form">

@@ -55,4 +55,10 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index')->with('message','Deleted task');
     }
+
+    public function show($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.show', compact('task'));
+    }
 }
