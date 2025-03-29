@@ -25,10 +25,10 @@
                         <td>{{ $task->content }}</td>
                         <td>
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Update</a>
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="DELETE" class="d-inline delete-form">
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger btn-sm delete-button" data-id="{{ $task->id }}">
+                                <button type="button" class="btn btn-danger btn-sm delete-button">
                                     Delete
                                 </button>
                             </form>
